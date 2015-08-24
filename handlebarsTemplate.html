@@ -1,0 +1,20 @@
+
+  			
+	<div class = "container">
+		<div class = "jumbotron centered">
+			<h1>Colors!</h1>
+		</div>
+	</div>
+
+	<div class = "container">
+	    <div class = "row"></div>
+
+			{{#each this}}
+			    <div class="col-lg-2 col-lg-offset-1 {{color}}">
+			      	<p class = "text-center">
+			      		{{color}} 
+			      	</p>
+			    </div>
+			{{/each}}
+		</div>
+	</div>

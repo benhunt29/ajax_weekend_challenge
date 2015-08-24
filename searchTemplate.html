@@ -1,0 +1,49 @@
+	<div class = "container">	
+		<div class = "row"> 
+			<div class ="col-md-4"  id = "resultsTable">
+				<table class = "table table-hover">
+					<caption>Search Results</caption>			
+						{{#if (userTable this)}}	
+							<tr>
+								<th>User</th>
+								<th>Number of Followers</th>
+								<th>Number of Tracks</th>
+								<th>User ID</th>
+							</tr>
+
+							{{#each this}}
+								<tr>
+									<td>{{username}}</td>
+									<td>{{followers_count}}</td>
+									<td>{{track_count}}</td>
+									<td>{{id}}</td>
+								</tr>
+							{{/each}}
+
+						{{else}}
+							<tr>
+								<th>User</th>
+								<th>Track Title</th>
+								<th>Number of Plays</th>
+								<th>Track ID</th>
+							</tr>
+
+							{{#each this}}
+								<tr>
+									{{#with user}}
+										<td>{{username}}</td>
+									{{/with}}
+									<td>{{title}}</td>
+									<td>{{playback_count}}</td>
+									<td>{{id}}</td>
+								</tr>
+							{{/each}}
+						{{/if}}		
+				</table>
+			</div>
+		</div>
+	</div>
+    
+    
+
+
