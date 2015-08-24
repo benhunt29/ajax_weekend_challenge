@@ -36,6 +36,7 @@ Handlebars.registerHelper('userTable', function(object) {
 function searchCallback(data,searchType,idSearch) {	
 	if(idSearch){
 		//if ID Search, only construct the Soundcloud player 
+		console.log(data.uri)
 		$('#soundCloud').append('<iframe class="iframe" id = "soundcloudElement" width="100%" height="465" scrolling="no" frameborder="no">');
   		$('.iframe').attr('src',src = 'https://w.soundcloud.com/player/?url='+data.uri);
 
@@ -69,16 +70,20 @@ $(document).ready(function() {
 	$('body').on('click','tr',function(){
 		$(this).toggleClass('highlightedRow');
 		$selectedItem = $(this);
+		console.log(($selectedItem.parent().parent().attr('id')));
+
 	});
 
 	//create SoundCloud widget based on ID of currently highlighted row
 	$('#openSoundCloudPlayer').on('click',function(){
-		var searchType = $('#searchType').val();
+		
 		var query = [];
 			console.log($selectedItem);
 			query = $selectedItem.children().last().text();
 			console.log(query);
-
+		//var searchType = $('#searchType').val();
+		var searchType = ($selectedItem.parent().parent().attr('id'));
+		console.log(searchType);
 		search(query,searchType,true);
 	})
 
@@ -108,11 +113,10 @@ $(document).ready(function() {
 });
 
 function search(query,searchType,idSearch){
-	console.log('In search: ', query);
 	var queryTypeString;
 
 	//format search string based on Track search or User search
-	if(searchType == 'Track'){
+	if(searchType == 'Track' || searchType == 'favoriteTracks'){
 		//if ID is searched, modify string to return object with specific ID
 		if(idSearch){
 			queryTypeString = trackIDSearchString + query + '?';
